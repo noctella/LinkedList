@@ -1,0 +1,68 @@
+//
+//  WebViewController.m
+//  LinkedList
+//
+//  Created by Jillian Crossley on 2013-01-27.
+//  Copyright (c) 2013 Jillian Crossley. All rights reserved.
+//
+
+#import "ArticleViewController.h"
+#import "ListViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
+@implementation ArticleViewController
+@synthesize llNavigationController, title, content;
+
+-(void)loadView
+{
+    
+    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    UIView *av = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    //[av setScalesPageToFit:YES];
+    
+    [self setView: av];
+}
+
+-(void)didMoveToParentViewController:(UIViewController*) nc{
+    /*self.llNavigationController = nc;
+    CATransition *animation = [CATransition animation];
+    [animation setDelegate:self];
+    [animation setType:kCATransitionMoveIn];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setDuration:0.8f];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [[self.view layer] addAnimation:animation forKey:@"pushIn"];*/
+}
+
+/*-(void)setListViewController:(ListViewController *)lvc
+{
+    listViewController = lvc;
+}*/
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [[self view]setBackgroundColor:[UIColor whiteColor]];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+}
+
+-(void)setTitle:(NSString *)newTitle
+{
+    title = newTitle;
+    
+}
+
+-(void)setContent:(NSString *)newContent
+{
+    content = newContent;
+}
+
+
+
+@end
