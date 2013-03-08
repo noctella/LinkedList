@@ -25,16 +25,11 @@
     // Override point for customization after application launch.
     
     ListViewController *lvc = [[ListViewController alloc]init];
-      NSLog(@"%f", lvc.view.frame.size.width);
-    
     LLNavigationController *masterNav = [[LLNavigationController alloc]init];
-     NSLog(@"%f", masterNav.view.frame.size.width);
     [masterNav addChildViewController:lvc];
 
     lvc.view.frame = rect;
     [masterNav.view addSubview:lvc.view];
-    NSLog(@"%f", masterNav.view.frame.size.width);
-     NSLog(@"%f", lvc.view.frame.size.width);
 
     [lvc didMoveToParentViewController:masterNav];
     

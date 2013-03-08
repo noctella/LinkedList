@@ -25,8 +25,6 @@
 
 -(void)viewDidLoad
 {
-    NSLog(@"loaded");
-    
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
@@ -52,7 +50,7 @@
     articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
     articleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     articleTableView.rowHeight = 130;
-    articleTableView.backgroundColor = [UIColor redColor]; //[UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
+    articleTableView.backgroundColor = [UIColor whiteColor]; //[UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
     
     [articleTableView setDataSource:self];
     [articleTableView setDelegate:self];
@@ -171,9 +169,8 @@
     [session postsInStreamWithCompletion:^(ANResponse * response, NSArray * posts, NSError * error) {
         
         LLParser *parser = [[LLParser alloc]init];
-        LLItems = [parser parsePosts:posts];
-        
-        
+        LLItems = [[NSMutableArray alloc]init];
+        [parser parsePosts:posts toLLItems:LLItems usingTableView: articleTableView];
         [articleTableView reloadData];
         
     }];
@@ -209,8 +206,5 @@
     
 }
 
--(void)scrollViewDidEndScrollingAnimation: (UIScrollView*)sv{
-    //remove or edit container view!
-}
 
 @end

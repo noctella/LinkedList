@@ -13,7 +13,4 @@
     
 }
 
-
--(void)returnToListView;
-
 @end

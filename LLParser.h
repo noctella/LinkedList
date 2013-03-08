@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LLParser : NSObject
+@interface LLParser : NSObject{
+    NSMutableArray *_parsedPosts;
+    UITableView *_tableView;
+}
 
 
--(NSMutableArray *) parsePosts: (NSArray *)posts;
+-(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*) parsedPosts usingTableView: (UITableView*)articleTableView;
 
 @end

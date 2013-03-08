@@ -34,16 +34,9 @@
     [scrollView setPagingEnabled:YES];
     [scrollView setDelegate:self];
     [scrollView addSubview:containerView];
-    /*UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeRight:)];
-   [swipeRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    swipeRecognizer.delegate = self;
-    
-    [scrollView addGestureRecognizer: swipeRecognizer];*/
 
-
-   // CGRect articleFrame = CGRectMake(screenWidth, 0, screenWidth*2, screenHeight * 2);
     UIView *av = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight * 2)];
-    [av setBackgroundColor:[UIColor grayColor]];
+    [av setBackgroundColor:[UIColor whiteColor]];
     
     
     CGFloat width = 320;
@@ -58,12 +51,11 @@
     
     UIScrollView *articleScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(screenWidth, 0, screenWidth*2, screenHeight)];
     [articleScrollView setContentSize: CGRectMake(0, 0, screenWidth, screenHeight*2).size];
-    [articleScrollView setBackgroundColor:[UIColor clearColor]];
+    [articleScrollView setBackgroundColor:[UIColor whiteColor]];
     [articleScrollView setDelegate:self];
     [articleScrollView addSubview:av];
-   // [articleScrollView setBounces:NO];
-    //[articleScrollView setAlwaysBounceHorizontal:NO];
-    //[articleScrollView setAlwaysBounceVertical:NO];
+    [articleScrollView setBounces:NO];
+    [articleScrollView setShowsVerticalScrollIndicator:YES];
     [containerView addSubview:articleScrollView];
    //[articleScrollView setScalesPageToFit:YES];
     
@@ -73,19 +65,13 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     if(scrollView.contentOffset.x == 0){
-        NSLog(@"paged!");
         [self willMoveToParentViewController:nil];
         [self.view removeFromSuperview];
-        // and then remove from the parent VC
-       // [self removeFromParentViewController];
-  
     }
   
 }
 
 -(void)didMoveToParentViewController:(UIViewController*) nc{
-    NSLog(@"moved");
-
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
@@ -93,16 +79,6 @@
     [scrollView scrollRectToVisible:arect animated: YES];
     
 }
-
-/*-(void)swipeRight: (UIGestureRecognizer *)gr{
-    NSLog(@"testing shit");
-
-    if(gr.state == UIGestureRecognizerStateRecognized){
-        NSLog(@"removed avc");
-
-        [self removeFromParentViewController];
-    }
-}*/
 
 -(void)viewDidLoad
 {
@@ -117,7 +93,6 @@
 -(void)setTitle:(NSString *)newTitle
 {
     title = newTitle;
-    
 }
 
 -(void)setContent:(NSString *)newContent

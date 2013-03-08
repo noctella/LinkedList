@@ -12,9 +12,10 @@
 
 @implementation LLParser
 
--(NSMutableArray *) parsePosts: (NSArray *)posts
+-(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*)parsedPosts usingTableView: (UITableView*)articleTableView;
 {
-    NSMutableArray *parsedPosts = [[NSMutableArray alloc]init];
+    _parsedPosts = parsedPosts;
+    _tableView = articleTableView;
     /*for(ANPost* post in posts){
                 NSString *html = [post HTML];
         
@@ -51,17 +52,23 @@
     //[newItem setUsername:@"jillian"];
     //[newItem cacheWebpage];
     
+    NSOperationQueue *operationQueue = [[NSOperationQueue alloc]init];
+    
+    
+    
     for(int i=0; i<10; i++){
-        LLItem *newItem = [[LLItem alloc]init];
-         [newItem cacheWebpage];
-        [newItem cacheWebpage];
-        [parsedPosts addObject:newItem];
+        NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(loadDataAsychn:) object:posts[i]];
+        [operationQueue addOperation:invocationOperation];
+        
     }
-      
-    return parsedPosts;
-    
-    
-    
+}
+
+-(void)loadDataAsychn:(NSString*)imageNo
+{
+    LLItem *newItem = [[LLItem alloc]init];
+    [newItem cacheWebpage];
+    [_parsedPosts addObject:newItem];
+    [_tableView reloadData];
 }
 
 @end
