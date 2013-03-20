@@ -35,31 +35,40 @@
     [scrollView setDelegate:self];
     [scrollView addSubview:containerView];
 
-    UIView *av = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight * 2)];
+    /*UIView *av = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight * 2)];
     [av setBackgroundColor:[UIColor whiteColor]];
     
     
     CGFloat width = 320;
     
     UILabel *titleBox = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 3*(width/4), width/10)];
-    titleBox.font = [UIFont fontWithName: @"Avenir" size:24.0];
+    titleBox.font = [UIFont fontWithName: @"Avenir" size:18.0];
     titleBox.textColor = [UIColor blackColor];
     titleBox.backgroundColor = [UIColor clearColor];
     [titleBox setText:@"Hey this is a title"];
-    [av addSubview:titleBox];
+    [av addSubview:titleBox];*/
     
     
-    UIScrollView *articleScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(screenWidth, 0, screenWidth*2, screenHeight)];
-    [articleScrollView setContentSize: CGRectMake(0, 0, screenWidth, screenHeight*2).size];
-    [articleScrollView setBackgroundColor:[UIColor whiteColor]];
-    [articleScrollView setDelegate:self];
-    [articleScrollView addSubview:av];
-    [articleScrollView setBounces:NO];
-    [articleScrollView setShowsVerticalScrollIndicator:YES];
-    [containerView addSubview:articleScrollView];
-   //[articleScrollView setScalesPageToFit:YES];
+    webView = [[UIWebView alloc]initWithFrame:CGRectMake(screenWidth, 0, screenWidth, screenHeight)];
+    NSLog(@"0width: %f", webView.frame.size.width);
+   // UIScrollView *articleScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(screenWidth, 0, screenWidth*2, screenHeight)];
+    //[articleScrollView setContentSize: CGRectMake(0, 0, screenWidth, screenHeight*2).size];
+   // [articleScrollView setBackgroundColor:[UIColor whiteColor]];
+    [webView setDelegate:self];
+    //[articleScrollView setBounces:NO];
+   // [articleScrollView setShowsVerticalScrollIndicator:YES];
+    [containerView addSubview:webView];
+   [webView setScalesPageToFit:YES];
     
     [self setView: scrollView];
+     NSLog(@"1width: %f", webView.frame.size.width);
+}
+
+-(void)loadPageWithUrl: (NSURL*)url{
+    NSLog(@"webpage: %@", url);
+
+   NSURLRequest *req = [NSURLRequest requestWithURL:url];
+   [webView loadRequest:req];
 }
 
 
@@ -77,6 +86,7 @@
     CGFloat screenHeight = screenRect.size.height;
     CGRect arect = CGRectMake(screenWidth, 0, screenWidth*2, screenHeight);
     [scrollView scrollRectToVisible:arect animated: YES];
+    NSLog(@"2width: %f", webView.frame.size.width);
     
 }
 

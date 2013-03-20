@@ -109,7 +109,7 @@
 
         titleBox = [[UILabel alloc] initWithFrame:CGRectMake(startingX, width/40, snippetWidth, width/10)];
         titleBox.tag = TITLEBOX_TAG;
-        titleBox.font = [UIFont fontWithName: @"Avenir" size:24.0];
+        titleBox.font = [UIFont fontWithName: @"Avenir" size:18.0];
         titleBox.textColor = [UIColor blackColor];
         titleBox.backgroundColor = [UIColor clearColor];
         
@@ -190,18 +190,22 @@
 
     [[self llNavigationController].view addSubview:avc.view];
     avc.view.frame = screenRect;
-    [avc didMoveToParentViewController:[self llNavigationController]];
     
-        
+    
     LLItem *item = [LLItems objectAtIndex:[indexPath row]];
     
     //NSURL *url = [NSURL URLWithString:[item mobilizedLink]];
-    //NSURLRequest *req = [NSURLRequest requestWithURL:url];
-    //[[articleViewController view]loadRequest:req];
+    NSURL *url = [NSURL URLWithString:[item url]];
+    NSLog(@"%@", item);
 
-    
-    [avc setTitle:[item title]];
-    [avc setContent:[item content]];
+    NSLog(@"url: %@", [item url]);
+    NSLog(@"url2: %@", [item mobilizedLink]);
+
+    [avc loadPageWithUrl:url];
+    [avc didMoveToParentViewController:[self llNavigationController]];
+
+    //[avc setTitle:[item title]];
+    //[avc setContent:[item content]];
 
     
 }

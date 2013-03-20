@@ -16,7 +16,7 @@
 
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *link;
+@property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *mobilizedLink;
 @property (nonatomic, strong) NSString *snippet;
 @property (nonatomic, strong) NSString *content;

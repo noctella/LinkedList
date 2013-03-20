@@ -16,31 +16,16 @@
 {
     _parsedPosts = parsedPosts;
     _tableView = articleTableView;
-    /*for(ANPost* post in posts){
+     NSOperationQueue *operationQueue = [[NSOperationQueue alloc]init];
+    
+    for(ANPost* post in posts){
                 NSString *html = [post HTML];
         
-        NSRange linkPrefixSearch = [html rangeOfString:@"<a href=\""];
+        NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(parsePostAsychn:) object:html];
+        [operationQueue addOperation:invocationOperation];
         
-        if(linkPrefixSearch.location == NSNotFound)continue;
-        
-        NSString *trimLinkPrefix = [html substringFromIndex:NSMaxRange(linkPrefixSearch)];        
-        NSRange linkSuffixSearch = [trimLinkPrefix rangeOfString:@"\">"];
-        NSString *link = [trimLinkPrefix substringToIndex:linkSuffixSearch.location];
-        NSLog(@"trim link: %@", link);
-        
-        LLItem *newItem = [[LLItem alloc]init];
-        [newItem setLink: link];
-        NSString *instapaperBaseURL = @"http://www.instapaper.com/m?u=";
-        NSString *instapaperArg = [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        [newItem setMobilizedLink: [instapaperBaseURL stringByAppendingString:instapaperArg]];
-        NSLog(@"instapaper'd link:%@", [newItem mobilizedLink]);
-
-        [newItem setUsername:@"jillian"];
-        [newItem cacheWebpage];
-        [parsedPosts addObject:newItem];
-      
-    }*/
+              // [newItem setUsername:@"jillian"];      
+    }
     
     //LLItem *newItem = [[LLItem alloc]init];
     //[newItem setLink: @"http://www.mirimage.ca"];
@@ -52,23 +37,57 @@
     //[newItem setUsername:@"jillian"];
     //[newItem cacheWebpage];
     
-    NSOperationQueue *operationQueue = [[NSOperationQueue alloc]init];
+   
     
     
     
-    for(int i=0; i<10; i++){
+    /*for(int i=0; i<10; i++){
         NSInvocationOperation *invocationOperation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(loadDataAsychn:) object:posts[i]];
         [operationQueue addOperation:invocationOperation];
         
+    }*/
+}
+
+-(void)parsePostAsychn:(NSString*)html
+{
+    NSRange urlPrefixSearch = [html rangeOfString:@"<a href=\""];
+    
+    if(urlPrefixSearch.length == 0){
+           [self parsePost:html];
+    }
+    else{
+        [self parsePost:html thatContainsUrlWithRange:&urlPrefixSearch];
     }
 }
 
--(void)loadDataAsychn:(NSString*)imageNo
-{
+-(void)parsePost: (NSString*) html thatContainsUrlWithRange: (NSRange *) urlPrefixSearch{
+    NSString *trimUrlPrefix = [html substringFromIndex:NSMaxRange(*urlPrefixSearch)];
+    NSRange linkSuffixSearch = [trimUrlPrefix rangeOfString:@"\">"];
+    
+    NSString *url = [trimUrlPrefix substringToIndex:linkSuffixSearch.location];
+    NSLog(@"url: %@", url);
+    
+    
+    NSString *instapaperBaseURL = @"http://www.instapaper.com/m?u=";
+    NSString *instapaperArg = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     LLItem *newItem = [[LLItem alloc]init];
-    [newItem cacheWebpage];
+    [newItem setUrl: url];
+    [newItem setMobilizedLink: [instapaperBaseURL stringByAppendingString:instapaperArg]];
+    NSLog(@"mobilized link: %@", [newItem mobilizedLink]);
+
     [_parsedPosts addObject:newItem];
     [_tableView reloadData];
+    
+    NSLog(@"instapaper'd link:%@", [newItem mobilizedLink]);
+
+}
+
+-(void) parsePost: (NSString *)html{
+    
+   // LLItem *newItem = [[LLItem alloc]init];
+    //[_parsedPosts addObject:newItem];
+    //[_tableView reloadData];
 }
 
 @end

@@ -13,8 +13,9 @@
 @interface ArticleViewController : UIViewController
 {
     UIScrollView *scrollView;
+    UIWebView *webView;
 }
-
+-(void)loadPageWithUrl: (NSURL*)url;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *content;
 @end

@@ -15,5 +15,6 @@
 
 
 -(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*) parsedPosts usingTableView: (UITableView*)articleTableView;
+-(void)post: (NSString*) html containsUrlWithRange: (NSRange *) urlPrefixSearch;
 
 @end
