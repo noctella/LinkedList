@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ContainerView.h"
+#import "SidebarViewController.h"
 #import "LLNavigationController.h"
 
 @class ArticleViewController;
@@ -36,6 +37,7 @@
     //UIView *containerView;
     UITableView *articleTableView;
     ArticleViewController *avc;
+    SidebarViewController *sidebarViewController;
     
 }
 

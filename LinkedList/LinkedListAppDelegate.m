@@ -15,7 +15,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
@@ -24,15 +24,20 @@
     self.window = [[UIWindow alloc] initWithFrame:rect];
     // Override point for customization after application launch.
     
-    ListViewController *lvc = [[ListViewController alloc]init];
     LLNavigationController *masterNav = [[LLNavigationController alloc]init];
-    [masterNav addChildViewController:lvc];
-
-    lvc.view.frame = rect;
-    [masterNav.view addSubview:lvc.view];
-
-    [lvc didMoveToParentViewController:masterNav];
     
+    SidebarViewController *svc = [[SidebarViewController alloc]init];
+    [masterNav addChildViewController:svc];
+    svc.view.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    [masterNav.view addSubview:svc.view];
+    [svc didMoveToParentViewController:masterNav];
+    
+    ListViewController *lvc = [[ListViewController alloc]init];
+    [masterNav addChildViewController:lvc];
+    lvc.view.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    [masterNav.view addSubview:lvc.view];
+    [lvc didMoveToParentViewController:masterNav];
+
     [[self window]setRootViewController:masterNav];
     
     self.window.backgroundColor = [UIColor orangeColor];

@@ -12,6 +12,7 @@
 		6253583B16C363A6008A9C0A /* photocorners@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6253583A16C363A6008A9C0A /* photocorners@2x.png */; };
 		6253583D16C363B1008A9C0A /* photocorners.png in Resources */ = {isa = PBXBuildFile; fileRef = 6253583C16C363B1008A9C0A /* photocorners.png */; };
 		6253584116C36438008A9C0A /* fox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6253584016C36438008A9C0A /* fox@2x.png */; };
+		6254042216FC07D40060673C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6254042116FC07D40060673C /* SidebarViewController.m */; };
 		6272FECE16BF61060029E715 /* LLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6272FECD16BF61060029E715 /* LLItem.m */; };
 		6272FED216BF63DE0029E715 /* LLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6272FED116BF63DE0029E715 /* LLParser.m */; };
 		627750F216EADED700BBE546 /* Tutorial.m in Sources */ = {isa = PBXBuildFile; fileRef = 627750F116EADED700BBE546 /* Tutorial.m */; };
@@ -112,6 +113,8 @@
 		6253583A16C363A6008A9C0A /* photocorners@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "photocorners@2x.png"; path = "../../../Linked List/resources/photocorners@2x.png"; sourceTree = "<group>"; };
 		6253583C16C363B1008A9C0A /* photocorners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = photocorners.png; path = "../../../Linked List/resources/photocorners.png"; sourceTree = "<group>"; };
 		6253584016C36438008A9C0A /* fox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fox@2x.png"; path = "../../../Linked List/resources/fox@2x.png"; sourceTree = "<group>"; };
+		6254042016FC07D40060673C /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		6254042116FC07D40060673C /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		6272FECC16BF61060029E715 /* LLItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLItem.h; sourceTree = "<group>"; };
 		6272FECD16BF61060029E715 /* LLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLItem.m; sourceTree = "<group>"; };
 		6272FED016BF63DE0029E715 /* LLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLParser.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				62B4D61116D46CE10099627F /* ContainerView.m */,
 				6297873516B6210400C7BAB2 /* ListViewController.h */,
 				6297873616B6210400C7BAB2 /* ListViewController.m */,
+				6254042016FC07D40060673C /* SidebarViewController.h */,
+				6254042116FC07D40060673C /* SidebarViewController.m */,
 				627750EE16EADE9300BBE546 /* HTMLParsing */,
 				6297873816B62A1B00C7BAB2 /* ArticleViewController.h */,
 				6297873916B62A1B00C7BAB2 /* ArticleViewController.m */,
@@ -707,6 +712,7 @@
 				6277510516EAE03600BBE546 /* TFHpple.m in Sources */,
 				6277510616EAE03600BBE546 /* TFHppleElement.m in Sources */,
 				6277510716EAE03600BBE546 /* XPathQuery.m in Sources */,
+				6254042216FC07D40060673C /* SidebarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

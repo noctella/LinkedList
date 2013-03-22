@@ -30,24 +30,26 @@
     CGFloat screenHeight = screenRect.size.height;
    
     //CGRect rect = CGRectMake(0, 0, screenWidth * 2, screenHeight);
-    CGRect rect = CGRectMake(0, 0, screenWidth, screenHeight);
+    CGRect rect = CGRectMake(0, 0, screenWidth * 2, screenHeight);
     [self  setContainerView: [[ContainerView alloc] initWithFrame:rect]];
     [[self containerView] setBackgroundColor: [UIColor clearColor]];
    
-   /* scrollView = [[UIScrollView alloc]initWithFrame:rect];
-    [scrollView setContentSize:rect.size];
+    scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    CGRect scrollViewContentSize = CGRectMake(- screenWidth, 0, screenWidth * 2, screenHeight);
+    [scrollView setContentSize:scrollViewContentSize.size];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.bounces = NO;
     [scrollView setPagingEnabled:YES];
     [scrollView setDelegate:self];
-    [scrollView addSubview:containerView];*/
+    [scrollView addSubview:containerView];
+ 
     
     
-    [self setView:containerView];
+    [self setView:scrollView];
     
-    articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
+    articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(screenWidth, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
     articleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     articleTableView.rowHeight = 130;
     articleTableView.backgroundColor = [UIColor whiteColor]; //[UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
@@ -56,12 +58,17 @@
     [articleTableView setDelegate:self];
     
     [[self containerView] addSubview:articleTableView];
-    
-    
+ 
     
     avc = [[ArticleViewController alloc]init];
     
+    
     [[self llNavigationController]addChildViewController:avc];
+    
+    NSLog(@"avc frame: %@", articleTableView);
+
+    
+    [scrollView scrollRectToVisible:CGRectMake(screenWidth, 0, screenWidth, screenHeight) animated:YES];
 
 }
 
