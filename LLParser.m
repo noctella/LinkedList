@@ -65,7 +65,7 @@
     NSRange linkSuffixSearch = [trimUrlPrefix rangeOfString:@"\">"];
     
     NSString *url = [trimUrlPrefix substringToIndex:linkSuffixSearch.location];
-    NSLog(@"url: %@", url);
+    //NSLog(@"url: %@", url);
     
     
     NSString *instapaperBaseURL = @"http://www.instapaper.com/m?u=";
@@ -76,18 +76,19 @@
     [newItem setMobilizedLink: [instapaperBaseURL stringByAppendingString:instapaperArg]];
     NSLog(@"mobilized link: %@", [newItem mobilizedLink]);
 
+    [newItem cacheWebpage]; 
     [_parsedPosts addObject:newItem];
     [_tableView reloadData];
     
-    NSLog(@"instapaper'd link:%@", [newItem mobilizedLink]);
+    //NSLog(@"instapaper'd link:%@", [newItem mobilizedLink]);
 
 }
 
 -(void) parsePost: (NSString *)html{
     
-   // LLItem *newItem = [[LLItem alloc]init];
-    //[_parsedPosts addObject:newItem];
-    //[_tableView reloadData];
+   /* LLItem *newItem = [[LLItem alloc]init];
+    [_parsedPosts addObject:newItem];
+    [_tableView reloadData];*/
 }
 
 @end

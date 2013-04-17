@@ -10,4 +10,6 @@
 
 @interface SidebarViewController : UIViewController
 
+@property (nonatomic) double sidebarSize;
+
 @end

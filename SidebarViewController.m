@@ -17,7 +17,7 @@
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     
-    UIView *sidebarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+    UIView *sidebarView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth * 0.5, screenHeight * 0.5)];
     [sidebarView setBackgroundColor:[UIColor greenColor]];
  
     

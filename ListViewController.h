@@ -46,7 +46,7 @@
 @property (nonatomic, strong) ContainerView *containerView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *storyView;
-
+@property (nonatomic) double sidebarSize;
 
 -(void) fetchEntries;
 @end

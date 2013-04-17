@@ -20,22 +20,23 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ListViewController
-@synthesize articleViewController, containerView, scrollView;
+@synthesize articleViewController, containerView, scrollView, sidebarSize;
 
 
 -(void)viewDidLoad
 {
+    sidebarSize = 0.85;
     CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
    
     //CGRect rect = CGRectMake(0, 0, screenWidth * 2, screenHeight);
-    CGRect rect = CGRectMake(0, 0, screenWidth * 2, screenHeight);
+    CGRect rect = CGRectMake(0, 0, screenWidth + (screenWidth * sidebarSize), screenHeight);
     [self  setContainerView: [[ContainerView alloc] initWithFrame:rect]];
     [[self containerView] setBackgroundColor: [UIColor clearColor]];
    
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-    CGRect scrollViewContentSize = CGRectMake(- screenWidth, 0, screenWidth * 2, screenHeight);
+    CGRect scrollViewContentSize = CGRectMake(- (screenWidth * sidebarSize), 0, screenWidth + (screenWidth * sidebarSize), screenHeight);
     [scrollView setContentSize:scrollViewContentSize.size];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     scrollView.showsHorizontalScrollIndicator = NO;
@@ -49,7 +50,7 @@
     
     [self setView:scrollView];
     
-    articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(screenWidth, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
+    articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(screenWidth * sidebarSize, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
     articleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     articleTableView.rowHeight = 130;
     articleTableView.backgroundColor = [UIColor whiteColor]; //[UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
@@ -66,9 +67,8 @@
     [[self llNavigationController]addChildViewController:avc];
     
     NSLog(@"avc frame: %@", articleTableView);
-
     
-    [scrollView scrollRectToVisible:CGRectMake(screenWidth, 0, screenWidth, screenHeight) animated:YES];
+    [scrollView scrollRectToVisible:CGRectMake(screenWidth * (1/sidebarSize), 0, screenWidth, screenHeight) animated:YES];
 
 }
 

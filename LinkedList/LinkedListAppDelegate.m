@@ -28,7 +28,7 @@
     
     SidebarViewController *svc = [[SidebarViewController alloc]init];
     [masterNav addChildViewController:svc];
-    svc.view.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    svc.view.frame = CGRectMake(0, 0, screenWidth * 0.85, screenHeight);
     [masterNav.view addSubview:svc.view];
     [svc didMoveToParentViewController:masterNav];
     
