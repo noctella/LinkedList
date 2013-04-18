@@ -14,7 +14,6 @@
 
 -(void)cacheWebpage
 {
-    NSLog(@"in here!");
     NSLog(@"url, %@", url);
            
     NSData *webpageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:url]];

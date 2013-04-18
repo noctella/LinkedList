@@ -18,6 +18,7 @@
 		625A4856171CF70D00F4513D /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 625A4855171CF70D00F4513D /* XPathQuery.m */; };
 		6272FECE16BF61060029E715 /* LLItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6272FECD16BF61060029E715 /* LLItem.m */; };
 		6272FED216BF63DE0029E715 /* LLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6272FED116BF63DE0029E715 /* LLParser.m */; };
+		627510D3171F861D009DF918 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 627510D2171F861D009DF918 /* CollectionViewCell.m */; };
 		6277510916EAE17E00BBE546 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6277510816EAE17E00BBE546 /* libxml2.dylib */; };
 		6297871916B620D100C7BAB2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6297871816B620D100C7BAB2 /* UIKit.framework */; };
 		6297871B16B620D100C7BAB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6297871A16B620D100C7BAB2 /* Foundation.framework */; };
@@ -102,6 +103,7 @@
 		62A4EFBA16D885B100E91993 /* LLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A4EFB916D885B100E91993 /* LLNavigationController.m */; };
 		62B4D61216D46CE10099627F /* ContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4D61116D46CE10099627F /* ContainerView.m */; };
 		62B4D61516D489780099627F /* ArticleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 62B4D61416D489780099627F /* ArticleTableView.m */; };
+		62D1E8F5171E3E9C00538002 /* CollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 62D1E8F4171E3E9C00538002 /* CollectionViewLayout.m */; };
 		62DE145116DDB26000B1273C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DE145016DDB26000B1273C /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +125,8 @@
 		6272FECD16BF61060029E715 /* LLItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLItem.m; sourceTree = "<group>"; };
 		6272FED016BF63DE0029E715 /* LLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLParser.h; sourceTree = "<group>"; };
 		6272FED116BF63DE0029E715 /* LLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLParser.m; sourceTree = "<group>"; };
+		627510D1171F861D009DF918 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		627510D2171F861D009DF918 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		6277510816EAE17E00BBE546 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		6297871416B620D100C7BAB2 /* LinkedList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LinkedList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6297871816B620D100C7BAB2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -282,6 +286,8 @@
 		62B4D61116D46CE10099627F /* ContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerView.m; sourceTree = "<group>"; };
 		62B4D61316D489780099627F /* ArticleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTableView.h; sourceTree = "<group>"; };
 		62B4D61416D489780099627F /* ArticleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableView.m; sourceTree = "<group>"; };
+		62D1E8F3171E3E9C00538002 /* CollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewLayout.h; sourceTree = "<group>"; };
+		62D1E8F4171E3E9C00538002 /* CollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewLayout.m; sourceTree = "<group>"; };
 		62DE145016DDB26000B1273C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -311,6 +317,10 @@
 				62B4D61116D46CE10099627F /* ContainerView.m */,
 				6297873516B6210400C7BAB2 /* ListViewController.h */,
 				6297873616B6210400C7BAB2 /* ListViewController.m */,
+				627510D1171F861D009DF918 /* CollectionViewCell.h */,
+				627510D2171F861D009DF918 /* CollectionViewCell.m */,
+				62D1E8F3171E3E9C00538002 /* CollectionViewLayout.h */,
+				62D1E8F4171E3E9C00538002 /* CollectionViewLayout.m */,
 				6297873816B62A1B00C7BAB2 /* ArticleViewController.h */,
 				6297873916B62A1B00C7BAB2 /* ArticleViewController.m */,
 				62B4D61016D46CE10099627F /* ContainerView.h */,
@@ -685,6 +695,8 @@
 				625A4851171CF63100F4513D /* TFHpple.m in Sources */,
 				625A4853171CF63800F4513D /* TFHppleElement.m in Sources */,
 				625A4856171CF70D00F4513D /* XPathQuery.m in Sources */,
+				62D1E8F5171E3E9C00538002 /* CollectionViewLayout.m in Sources */,
+				627510D3171F861D009DF918 /* CollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

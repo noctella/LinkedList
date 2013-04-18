@@ -17,7 +17,10 @@
 #import "LLParser.h"
 #import "AppNetKit.h"
 #import "LinkedListAppDelegate.h"
+#import "CollectionViewLayout.h"
+#import "CollectionViewCell.h"
 #import <QuartzCore/QuartzCore.h>
+
 
 @implementation ListViewController
 @synthesize articleViewController, containerView, scrollView, sidebarSize;
@@ -50,24 +53,36 @@
     
     [self setView:scrollView];
     
-    articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(screenWidth * sidebarSize, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
+    UIScrollView *scrollViewForCollectionView = [[UIScrollView alloc] initWithFrame:CGRectMake(screenWidth * sidebarSize, 0, screenWidth, screenHeight)];
+    
+    [scrollViewForCollectionView setContentSize:scrollViewForCollectionView.frame.size];
+    
+    UICollectionViewLayout *collectionViewLayout = [[CollectionViewLayout alloc]init];
+    itemView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)collectionViewLayout:collectionViewLayout];
+    
+    [itemView setBackgroundColor:[UIColor redColor]];
+    [itemView setDelegate: self];
+    [itemView setDataSource:self];
+    [itemView registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+    
+    /*articleTableView = [[UITableView alloc]initWithFrame:CGRectMake(screenWidth * sidebarSize, 0, screenWidth, screenHeight)style:UITableViewStylePlain];
     articleTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     articleTableView.rowHeight = 130;
     articleTableView.backgroundColor = [UIColor whiteColor]; //[UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
     
     [articleTableView setDataSource:self];
-    [articleTableView setDelegate:self];
+    [articleTableView setDelegate:self];*/
+
+    [scrollViewForCollectionView addSubview:itemView];
     
-    [[self containerView] addSubview:articleTableView];
+    [[self containerView] addSubview:scrollViewForCollectionView];
  
     
     avc = [[ArticleViewController alloc]init];
     
     
     [[self llNavigationController]addChildViewController:avc];
-    
-    NSLog(@"avc frame: %@", articleTableView);
-    
+ 
     [scrollView scrollRectToVisible:CGRectMake(screenWidth * (1/sidebarSize), 0, screenWidth, screenHeight) animated:YES];
 
 }
@@ -83,26 +98,47 @@
 }
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [LLItems count];
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    
+    return 2;
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    UITableViewCell *cell = [articleTableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    UILabel *titleBox, *snippetBox;
-    LLItem *currentItem = [LLItems objectAtIndex:[indexPath row]];
+- (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section {
     
-    if(cell == nil){
+    return 2;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGSize size = CGSizeMake(200, 200);
+    return size;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+
+     NSLog(@"collection view cell width");
+    
+    CollectionViewCell *cell = [cv  dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCell" forIndexPath: indexPath];
+    UILabel *titleBox, *snippetBox;
+    NSLog(@"collection view cell width2");
+    
+    if([LLItems count] >= [indexPath length]){
+        LLItem *currentItem = [LLItems objectAtIndex:[indexPath row]];
+        [cell displayData: currentItem];
+    }
+    
+    
+
+    
+    //if(cell == nil){
         
-        int width = articleTableView.bounds.size.width;
-        int height = articleTableView.rowHeight;
+       // int width = articleTableView.bounds.size.width;
+        // int height = articleTableView.rowHeight;
         
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"UITableViewCell"];
+        //cell = [itemView registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:@"CollectionViewCell"];
         
-        UIImage *indicatorTriangleUnread = [UIImage imageNamed: @"indicatorTriangleUnread.png"];
+        /*UIImage *indicatorTriangleUnread = [UIImage imageNamed: @"indicatorTriangleUnread.png"];
         UIImageView *unreadTriangleView = [[UIImageView alloc] initWithImage:indicatorTriangleUnread];
         
         unreadTriangleView.frame = CGRectMake(tableView.bounds.size.width - indicatorTriangleUnread.size.width, 0, indicatorTriangleUnread.size.width, indicatorTriangleUnread.size.height);
@@ -139,18 +175,15 @@
         UIImage *separator = [UIImage imageNamed:@"separator.png"];
         UIImageView *separatorView = [[UIImageView alloc] initWithImage:separator];
         separatorView.frame = CGRectMake(0, 0, separator.size.width - indicatorTriangleUnread.size.width, separator.size.height);
-        [cell.contentView addSubview: separatorView];
+        [cell.contentView addSubview: separatorView];*/
         
         
-    }else{
-         titleBox = (UILabel *)[cell.contentView viewWithTag:TITLEBOX_TAG];
-    }
-    
-    //RSSItem *item = [[channel items]objectAtIndex:[indexPath row]];
-    
+    //}else{
+         //titleBox = (UILabel *)[cell.contentView viewWithTag:TITLEBOX_TAG];
+    //}
 
-    [titleBox setText: [currentItem title]];
-    [snippetBox setText: [currentItem snippet]];
+    //[titleBox setText: [currentItem title]];
+    //[snippetBox setText: [currentItem snippet]];
 
     return cell;
 }
@@ -177,8 +210,8 @@
         
         LLParser *parser = [[LLParser alloc]init];
         LLItems = [[NSMutableArray alloc]init];
-        [parser parsePosts:posts toLLItems:LLItems usingTableView: articleTableView];
-        [articleTableView reloadData];
+        [parser parsePosts:posts toLLItems:LLItems usingItemView: itemView];
+        //[itemView reloadData];
         
     }];
 

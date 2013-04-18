@@ -12,10 +12,10 @@
 
 @implementation LLParser
 
--(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*)parsedPosts usingTableView: (UITableView*)articleTableView;
+-(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*)parsedPosts usingItemView: (UICollectionView*)itemView;
 {
     _parsedPosts = parsedPosts;
-    _tableView = articleTableView;
+    _itemView = itemView;
      NSOperationQueue *operationQueue = [[NSOperationQueue alloc]init];
     
     for(ANPost* post in posts){
@@ -78,7 +78,7 @@
 
     [newItem cacheWebpage]; 
     [_parsedPosts addObject:newItem];
-    [_tableView reloadData];
+    [_itemView reloadData];
     
     //NSLog(@"instapaper'd link:%@", [newItem mobilizedLink]);
 

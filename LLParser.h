@@ -10,11 +10,11 @@
 
 @interface LLParser : NSObject{
     NSMutableArray *_parsedPosts;
-    UITableView *_tableView;
+    UICollectionView *_itemView;
 }
 
 
--(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*) parsedPosts usingTableView: (UITableView*)articleTableView;
+-(void) parsePosts: (NSArray *)posts toLLItems: (NSMutableArray*) parsedPosts usingItemView: (UICollectionView*)articleTableView;
 -(void)post: (NSString*) html containsUrlWithRange: (NSRange *) urlPrefixSearch;
 
 @end

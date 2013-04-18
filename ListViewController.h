@@ -13,7 +13,7 @@
 
 @class ArticleViewController;
 
-@interface ListViewController : UIViewController
+@interface ListViewController : UIViewController  <UICollectionViewDelegate, UICollectionViewDataSource>
 {
     
 /*javascript:(function({
@@ -35,7 +35,7 @@
     
     NSMutableArray *LLItems;
     //UIView *containerView;
-    UITableView *articleTableView;
+    UICollectionView *itemView;
     ArticleViewController *avc;
     SidebarViewController *sidebarViewController;
     
